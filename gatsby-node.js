@@ -3,5 +3,11 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const customConfig = require('./webpack.custom.js');
+exports.onCreateWebpackConfig = ({ stage, actions, plugins }) => {
+  if (stage !== 'develop') {
+    return;
+  }
 
-// You can delete this file if you're not using it
+  actions.setWebpackConfig(customConfig);
+}
