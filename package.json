@@ -1,7 +1,7 @@
 {
   "name": "udfast-ui",
   "private": true,
-  "description": "eact-helmet",
+  "description": "ui for udfast app, which is working on p2p file transfer.",
   "version": "0.1.0",
   "author": "William Huang",
   "dependencies": {
@@ -42,7 +42,11 @@
     "fork-ts-checker-webpack-plugin": "^4.1.0"
   },
   "keywords": [
-    "gatsby"
+    "webrtc",
+    "peerjs",
+    "file-sharing",
+    "gatsby",
+    "react"
   ],
   "license": "MIT",
   "scripts": {
