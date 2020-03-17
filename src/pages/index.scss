@@ -1,0 +1,11 @@
+@import './common.scss';
+
+body {
+	@include css4 {
+		color: var(--color);
+		background: var(--background);
+		font: {
+			family: var(--font);
+		};
+  }
+}
