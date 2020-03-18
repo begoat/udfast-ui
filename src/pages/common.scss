@@ -1,50 +1,41 @@
 $css4: true;
 $compatibility: true;
-//it is nessesary to define the variables in sass map instead of :root, for compatibility reasons.
 
+//it is nessesary to define the variables in sass map instead of :root, for compatibility reasons.
 $variables: (
-  --color: white,
-  --background: skyblue,
-  --font: sans-serif,
+  --color: white black,
+  --background: skyblue green,
+  --font: sans-serif sans-serif,
 );
 
 // Here we transfer the variables from the map to the :root element
 @if($css4) {
   :root {
     @each $variable, $value in $variables {
-      #{$variable}: $value;
+      #{$variable}: nth($value, 1);
     }
   }
 
-  // TODO: won't work in IE.
-  // TODO: need use js to control it.
   @media (prefers-color-scheme: dark) {
     :root {
-      // @each $variable, $value in $variables {
-      //   #{$variable}: nth($value, 2);
-      // }
-
-      --color: black;
-      --background: yellow;
-      --font: sans-serif;
+      @each $variable, $value in $variables {
+        #{$variable}: nth($value, 2);
+      }
     }
   }
 }
 
-//this is the "magic" function
+// this is the "magic" function
 @function var($variable) {
   @if($css4) {
     @return unquote('var(' + $variable + ')');
   } @else {
-    @return map-get($variables, $variable);
+    @return nth(map-get($variables, $variable), 1);
   }
 }
 
-/**
- * TODO: maybe we can tune this mixin to support multi themes fallback
- * pass a param to @content block, get value from a variable list
- */
 // the mixin temporally sets the $css4 variable to false, compiles the css3 fallback, then makes the variable true again and compiles the css4 code. It should contain properties that use css4 variables, otherwise there will be unnessesary duplication of properties.
+// https://github.com/sass/sass/issues/871#issuecomment-570082607 lib `node-sass` doesn't support `content block paramater` yet.
 @mixin css4 {
   @if ($css4) {
     $css4-backup: $css4;
@@ -60,3 +51,85 @@ $variables: (
     @content;
   }
 }
+
+// dark-saas version of multi-theme using css varaible with fallback, feel free to try it on https://www.sassmeister.com/
+
+// $css4: true;
+// $compatibility: true;
+// //it is nessesary to define the variables in sass map instead of :root, for compatibility reasons.
+
+// $mclr: white, yellow;
+// $mbg: skyblue, red;
+// $mfont: sans-serif, sans-serif;
+
+// $variables: (
+//   --color: $mclr,
+//   --background: $mbg,
+//   --font: $mfont,
+// );
+
+// // Here we transfer the variables from the map to the :root element
+// @if($css4) {
+//   :root {
+//     @each $variable, $value in $variables {
+//       #{$variable}: nth($value, 1);
+//     }
+//   }
+
+//   @media (prefers-color-scheme: dark) {
+//     :root {
+//       @each $variable, $value in $variables {
+//         #{$variable}: nth($value, 2);
+//       }
+//     }
+//   }
+// }
+
+// //this is the "magic" function
+// @function var($variable, $theme) {
+//   @if($css4) {
+//     @return unquote('var(' + $variable + ')');
+//   } @else {
+//     @return nth(map-get($variables, $variable), $theme);
+//   }
+// }
+
+// /**
+//  * https://github.com/sass/sass/issues/871#issuecomment-570082607 lib `node-sass` doesn't support it yet.
+//  * the mixin temporally sets the $css4 variable to false,
+//  * compiles the css3 fallback, then makes the variable true again and compiles the css4 code.
+//  * It should contain properties that use css4 variables, otherwise there will be unnessesary duplication of properties.
+//  */
+// @mixin css4 {
+//   @if ($css4) {
+//     $css4-backup: $css4;
+//     @if($compatibility) {
+//       $css4: false !global;
+//       @content(1);
+//       @media (prefers-color-scheme: dark) {
+//         @content(2);
+//       }
+//     }
+//     $css4: true !global;
+//     @content(1);
+//     @media (prefers-color-scheme: dark) {
+//       @content(2);
+//     }
+//     $css4: $css4-backup;
+//   }
+//   @else {
+//     @content(1);
+//   }
+// }
+
+// body {
+//   display: flex;
+
+// 	@include css4 using ($theme) {
+// 		color: var(--color, $theme);
+// 		background: var(--background, $theme);
+// 		font: {
+// 			family: var(--font, $theme);
+// 		};
+//   }
+// }

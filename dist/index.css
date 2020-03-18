@@ -1,0 +1,18 @@
+:root {
+  --color: white;
+  --background: skyblue;
+  --font: sans-serif; }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color: black;
+    --background: green;
+    --font: sans-serif; } }
+
+body {
+  color: white;
+  background: skyblue;
+  font-family: sans-serif;
+  color: var(--color);
+  background: var(--background);
+  font-family: var(--font); }
