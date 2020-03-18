@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `UDFast-UI`,
+    description: `ui for udfast app, which is working on p2p file transfer.`,
+    author: `william huang`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -31,7 +31,13 @@ module.exports = {
       resolve: `gatsby-plugin-typescript`,
       options: {}
     },
-    `gatsby-plugin-sass`
+    `gatsby-plugin-sass`,
+    // { // actuall there is dart-scss that can correctly parse scss but it seems error will show on vscode
+    //   resolve: `gatsby-plugin-sass`,
+    //   options: {
+    //     implementation: require("sass"),
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

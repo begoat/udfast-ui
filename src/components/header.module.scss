@@ -1,0 +1,34 @@
+@import '../styles/utils.scss';
+@import '../styles/common.scss';
+
+.header {
+  background-image: url('../images/background-wave.png');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  @include css4() {
+    background-color: var(--headerBg);
+  }
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+h1,
+.h1-link {
+  @include css4() {
+    color: var(--headerClr);
+  }
+  text-decoration: none;
+}
+
+.title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+}
