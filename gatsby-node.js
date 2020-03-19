@@ -3,10 +3,6 @@ const customConfig = require('./webpack.custom.js');
 const locales = require('./src/locales/locale-route.js');
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
-  if (stage !== 'develop') {
-    return;
-  }
-
   actions.setWebpackConfig(customConfig);
 }
 
