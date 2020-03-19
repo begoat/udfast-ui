@@ -1,0 +1,21 @@
+@import '../../styles/utils.scss';
+@import '../../styles/common.scss';
+
+.nav-wrapper {
+  height: 45px;
+  @include css4() {
+    background-color: var(--navbarBg);
+  }
+}
+
+.setting {
+  @include flex-center;
+}
+
+.content-container {
+  @include maxWidthAndCenter;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

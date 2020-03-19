@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Header from './header';
+import Navbar from './navbar';
+
 import './layout.css';
 
 interface LayoutProps {
@@ -11,6 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />
+      <Navbar />
       <div
         style={{
           margin: '0 auto',

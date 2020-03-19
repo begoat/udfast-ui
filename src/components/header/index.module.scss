@@ -1,0 +1,105 @@
+@import '../../styles/utils.scss';
+@import '../../styles/common.scss';
+
+.header {
+  background-image: url('../../images/background-wave.png');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  @include css4() {
+    background-color: var(--headerBg);
+  }
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include maxWidthAndCenter;
+  padding: 10px 15px;
+  overflow: hidden;
+}
+
+h1,
+.h1-link {
+  @include css4() {
+    color: var(--headerClr);
+  }
+  text-decoration: none;
+  @include mqSmallThenPad {
+    font-size: 28px;
+    line-height: 28px;
+    white-space: nowrap;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.info-container {
+  @include flex-center;
+  @include mqSmallThenPad {
+    flex-direction: column;
+    align-items: flex-end;
+  };
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  margin-left: 30px;
+  @include mqSmallThenPad {
+    flex-direction: row;
+  };
+
+  @include mqSmMobileWidth {
+    flex-direction: column;
+  }
+}
+
+.info > * {
+  @include mqSmallThenPad {
+    margin-right: 10px;
+  }
+}
+
+.btn-set {
+  @include flex-center;
+}
+
+.btn-set > button {
+  margin-right: 10px;
+  @include mqSmallThenPad {
+    padding: 2px 6px;
+  }
+}
+
+.btn-set > button:last-of-type {
+  margin-right: 0;
+}
+
+.img-set {
+  @include flex-center;
+  flex-direction: column;
+  @include mqSmMobileWidth {
+    flex-direction: row;
+  }
+}
+
+.img-set > *:not(:last-child) {
+  @include mqSmMobileWidth {
+    margin-right: 5px;
+  }
+}
+
+.project-status {
+  margin-top: 10px;
+  margin-bottom: 0;
+  max-width: 100%;
+  vertical-align: middle;
+}

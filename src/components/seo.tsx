@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
+import { getTheme } from '@/utils/multi-theme';
+
 function SEO({ description, lang, meta, title }: any) {
   const { site } = useStaticQuery(
     graphql`
@@ -34,6 +36,7 @@ function SEO({ description, lang, meta, title }: any) {
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
+      bodyAttributes={{class: getTheme()}}
       meta={[
         {
           name: 'description',
@@ -67,6 +70,10 @@ function SEO({ description, lang, meta, title }: any) {
           name: 'twitter:description',
           content: metaDescription,
         },
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'
+        }
       ].concat(meta)}
     />
   );

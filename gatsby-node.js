@@ -1,6 +1,11 @@
-// See: https://www.gatsbyjs.org/docs/node-apis/
+// https://www.gatsbyjs.org/docs/node-apis/
+require("@babel/register")({
+  cwd: __dirname,
+  extensions: ['.ts'],
+  presets: ["@babel/env", "@babel/typescript"],
+});
 const customConfig = require('./webpack.custom.js');
-const locales = require('./src/locales/locale-route.js');
+const locales = require('./src/locales/locale-route.ts');
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   actions.setWebpackConfig(customConfig);
@@ -14,7 +19,7 @@ exports.onCreatePage = ({ page, actions }) => {
     deletePage(page);
     Object.keys(locales.localeMap).map(lang => {
       const { locale: currentLocale, path: currentLocalePath } = locales.localeMap[lang];
-      const localizedPath = locales.getDefaultLocale() === currentLocale ? page.path : currentLocalePath + page.path;
+      const localizedPath = `${locales.getDefaultLocale() === currentLocale ? '' : currentLocalePath}${page.path}`;
       return createPage({
         ...page,
         path: localizedPath,

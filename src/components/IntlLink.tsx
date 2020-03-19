@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link, GatsbyLinkProps } from 'gatsby';
 
-import { useLocale } from '@/locales/index';
-import { getDefaultLocale, getLocalePathByLocale } from '@/locales/locale-route';
+import { localeCandidate, getDefaultLocale, getLocalePathByLocale } from '@/locales';
+import { useLocale } from '@/utils/hooks';
+
+export const getLocaledPathByPathAndLocale = (targetLocale: localeCandidate, to: string) => {
+  const isDefault = getDefaultLocale() === targetLocale;
+  return isDefault ? to : `/${getLocalePathByLocale(targetLocale)}${to}`;
+};
 
 const LocalizedLink = ({ to, ref, ...props }: GatsbyLinkProps<any>) => {
   const { locale } = useLocale();
-  const isDefault = getDefaultLocale() === locale;
-  const path = isDefault ? to : `/${getLocalePathByLocale(locale)}${to}`;
+  const path = getLocaledPathByPathAndLocale(locale as localeCandidate, to);
   return <Link {...props} to={path} />;
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
-import message, { localeCandidate } from '@/locales/index';
+import { messages, localeCandidate } from '@/locales/index';
 import { getDefaultLocale } from '@/locales/locale-route';
 
 interface LocaleProps {
@@ -13,7 +13,7 @@ const LocaleProvider = ({ children, locale = getDefaultLocale() as localeCandida
   return (
     <IntlProvider
       locale={locale}
-      messages={message[locale]}
+      messages={messages[locale]}
     >
       {children}
     </IntlProvider>

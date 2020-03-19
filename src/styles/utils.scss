@@ -9,21 +9,20 @@ $variables: (
 
   --headerBg: #192F66 #192F66,
   --headerClr: white white,
+  --navbarBg: #f7f7fa #1a1d24,
 );
 
 // Here we transfer the variables from the map to the :root element
 @if($css4) {
-  :root {
+  body.light {
     @each $variable, $value in $variables {
       #{$variable}: nth($value, 1);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      @each $variable, $value in $variables {
-        #{$variable}: nth($value, 2);
-      }
+  body.dark {
+    @each $variable, $value in $variables {
+      #{$variable}: nth($value, 2);
     }
   }
 }

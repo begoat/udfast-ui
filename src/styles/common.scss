@@ -1,5 +1,27 @@
+$maxWidth: 1280px;
+
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+$iPadWidth: 768px;
+$mobileWidth: 600px;
+
+@mixin mqSmMobileWidth {
+  @media only screen and (max-width: $mobileWidth) {
+    @content
+  }
+};
+
+@mixin mqSmallThenPad {
+  @media only screen and (max-width: $iPadWidth) {
+    @content
+  }
+};
+
+@mixin maxWidthAndCenter {
+  max-width: $maxWidth;
+  margin: 0 auto;
+};
