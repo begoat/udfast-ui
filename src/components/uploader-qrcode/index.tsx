@@ -1,0 +1,1 @@
+// https://github.com/zpao/qrcode.react
