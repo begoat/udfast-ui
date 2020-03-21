@@ -1,4 +1,5 @@
 $maxWidth: 1280px;
+$minWidth: 320px;
 
 @mixin flex-center {
   display: flex;
@@ -23,5 +24,6 @@ $mobileWidth: 600px;
 
 @mixin maxWidthAndCenter {
   max-width: $maxWidth;
+  min-width: $minWidth;
   margin: 0 auto;
 };
