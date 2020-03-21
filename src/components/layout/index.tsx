@@ -1,4 +1,5 @@
 import React from 'react';
+import VConsole from 'vconsole';
 
 import Header from '../header';
 import Navbar from '../navbar';
@@ -9,6 +10,8 @@ interface LayoutProps {
   children?: Array<React.ReactChild>;
 }
 
+// eslint-disable-next-line no-new
+new VConsole();
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
