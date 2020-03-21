@@ -1,9 +1,9 @@
 import React from 'react';
 import { ReplaceComponentRendererArgs } from 'gatsby';
 
-import SEO from '@/components/seo';
+import SEO from '@/components/seo-helmet';
 import Layout from '@/components/layout';
-import LocaleProvider from '@/components/LocaleProvider';
+import LocaleProvider from '@/components/locale-provider';
 import ErrorBoundary from '@/components/error-boundary';
 
 import 'rsuite/dist/styles/rsuite-default.css';

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Header from './header';
-import Navbar from './navbar';
+import Header from '../header';
+import Navbar from '../navbar';
 
-import './layout.css';
+import './index.css';
 
 interface LayoutProps {
   children?: Array<React.ReactChild>;

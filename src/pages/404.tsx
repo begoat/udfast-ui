@@ -1,10 +1,10 @@
 import React from 'react';
 import { ReplaceComponentRendererArgs } from 'gatsby';
 
-import LocaleProvider from '@/components/LocaleProvider';
+import LocaleProvider from '@/components/locale-provider';
 
 import Layout from '../components/layout';
-import SEO from '../components/seo';
+import SEO from '../components/seo-helmet';
 
 const NotFoundPage = ({ pathContext }: ReplaceComponentRendererArgs) => {
   const { locale } = pathContext as any;

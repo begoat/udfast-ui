@@ -1,8 +1,7 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
-import { messages, localeCandidate } from '@/locales/index';
-import { getDefaultLocale } from '@/locales/locale-route';
+import { messages, localeCandidate, getDefaultLocale } from '@/locales';
 
 interface LocaleProps {
   children?: React.ReactChild;

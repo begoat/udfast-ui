@@ -4,7 +4,7 @@ import Img from 'gatsby-image';
 import { Button } from 'rsuite';
 
 import { useLocale } from '@/utils/hooks';
-import IntlLink from '@/components/IntlLink';
+import IntlLink from '@/components/intl-link';
 
 import headerStyle from './index.module.scss';
 
