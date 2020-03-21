@@ -6,5 +6,7 @@ export default {
   'nightmode_off': 'NightMode Off',
   'nightmode_on': 'NightMode On',
   'seekHelp': 'help',
-  'shareSite': 'share'
+  'shareSite': 'share',
+  'fileDropActive': 'Loose mouse and upload your file',
+  'fileDropNotActive': 'Drag files here',
 };

@@ -1,0 +1,25 @@
+@import '../../styles/utils.scss';
+@import '../../styles/common.scss';
+
+.container {
+  @include flex-center;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  @include css4() {
+    background-color: var(--fileUploaderBg);
+  }
+}
+
+.inner {
+  @include flex-center;
+  flex-direction: column;
+}
+
+.inner p {
+  @include css4() {
+    color: var(--fileUploaderTxtClr);
+  }
+  margin-top: 20px;
+  font-size: 32px;
+}
