@@ -19,14 +19,18 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
       <LocaleProvider locale={locale}>
         <Layout>
           <SEO title="upload-side" />
-          <div className='file-uploader'>
-            <FileUploader />
-          </div>
-          <div className='uploader-info'>
-            <UploaderInfo peerId="123123123" />
-          </div>
-          <div className='file-list'>
-            <FileList />
+          <div className="body-container">
+            <div>
+              <div className='file-uploader'>
+                <FileUploader />
+              </div>
+              <div className='uploader-info'>
+                <UploaderInfo peerId="123123123" />
+              </div>
+            </div>
+            <div className='file-list'>
+              <FileList fileList={[]} />
+            </div>
           </div>
         </Layout>
       </LocaleProvider>

@@ -1,6 +1,13 @@
 $maxWidth: 1280px;
 $minWidth: 320px;
 
+@mixin defaultBehavior {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100%;
+  width: 100%;
+}
+
 @mixin flex-center {
   display: flex;
   align-items: center;

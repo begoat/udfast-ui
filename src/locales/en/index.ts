@@ -10,7 +10,7 @@ export default {
   'fileDropActive': 'Loose mouse and upload your file',
   'fileDropNotActive': 'Drag files here',
   'copy': 'Copy',
-  'tempAddress': 'temp address for sharing, useful only when online',
+  'tempAddress': 'Share this temp url to others for downloading',
   'fileName': 'File Name',
   'fileSize': 'File Size',
   'fileId': 'File Id',

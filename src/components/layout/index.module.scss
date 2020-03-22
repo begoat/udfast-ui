@@ -1,0 +1,8 @@
+@import '../../styles/common.scss';
+@import '../../styles/utils.scss';
+
+.main {
+  margin: 0 auto;
+  max-width: $maxWidth;
+  padding: 0 1rem;
+}

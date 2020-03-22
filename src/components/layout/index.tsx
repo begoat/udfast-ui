@@ -4,7 +4,7 @@ import { checkRunOnClient } from '@/utils/env';
 
 import Header from '../header';
 import Navbar from '../navbar';
-import './index.css';
+import layoutStyle from './index.module.scss';
 
 if (checkRunOnClient()) {
   // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
@@ -22,13 +22,7 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <Header />
       <Navbar />
-      <div
-        style={{
-          margin: '0 auto',
-          maxWidth: 1280,
-          padding: '0 1.0875rem 1.45rem',
-        }}
-      >
+      <div className={layoutStyle.main}>
         <main>{children}</main>
       </div>
     </>

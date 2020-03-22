@@ -40,7 +40,9 @@ export default () => {
     <div {...getRootProps({ className: uploaderStyle.container })}>
       <input {...getInputProps()} />
       <div className={uploaderStyle.inner}>
-        <Img fixed={data.file.childImageSharp.fixed} />
+        <div className={uploaderStyle.img}>
+          <Img fixed={data.file.childImageSharp.fixed} />
+        </div>
         <p className={uploaderStyle.p}>{isDragActive ? formatMessage('fileDropActive') : formatMessage('fileDropNotActive')}</p>
       </div>
     </div>

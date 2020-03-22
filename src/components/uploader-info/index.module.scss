@@ -7,11 +7,14 @@
 }
 
 .container span {
-  font-size: 16px;
+  font-weight: 900;
+  font-size: 20px;
+  text-decoration: underline;
 }
 
 .container p {
-  font-size: 24px;
+  font-size: 18px;
+  word-break: break-all;
 }
 
 .operation {

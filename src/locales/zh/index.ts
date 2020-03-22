@@ -10,7 +10,7 @@ export default {
   'fileDropActive': '松开即可上传',
   'fileDropNotActive': '拖拽文件上传',
   'copy': '复制',
-  'tempAddress': '临时访问地址，仅仅本地在线时有效',
+  'tempAddress': '把下面的临时链接分享给别人供下载方下载',
   'fileName': '文件名',
   'fileSize': '文件大小',
   'fileId': '文件ID',

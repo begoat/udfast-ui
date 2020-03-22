@@ -8,6 +8,7 @@
 .container > div {
   height: 90px;
   border-radius: 10px;
+  padding: 6px;
 }
 
 .container > div:nth-child(odd) {
@@ -34,6 +35,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.top > span:first-child {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.top > span:last-child {
+  white-space: nowrap;
 }
 
 .bottom {

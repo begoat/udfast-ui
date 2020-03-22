@@ -13,24 +13,11 @@ export interface CustomFile extends File {
 }
 
 interface FileListProps {
-  fileList?: Array<CustomFile>;
+  fileList: Array<CustomFile>;
 }
 
 export default ({
-  fileList = [
-    {
-      name: '12313',
-      size: 123,
-      fileId: 'dmeo',
-      lastModified: 1584845614139,
-    },
-    {
-      name: 'sda,akdlas',
-      size: 12322,
-      fileId: 'dmeo222',
-      lastModified: 1584845614139,
-    },
-  ] as Array<CustomFile>,
+  fileList = [],
 }: FileListProps) => {
   const { formatMessage } = useLocale();
   return (

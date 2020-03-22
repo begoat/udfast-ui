@@ -3,11 +3,14 @@
 
 .container {
   @include flex-center;
-  height: 100%;
-  width: 100%;
   border-radius: 8px;
   @include css4() {
     background-color: var(--fileUploaderBg);
+  }
+
+  height: 200px;
+  @include mqSmMobileWidth() {
+    height: 50px;
   }
 }
 
@@ -20,6 +23,12 @@
   @include css4() {
     color: var(--fileUploaderTxtClr);
   }
-  margin-top: 20px;
   font-size: 32px;
+}
+
+.img {
+  margin-bottom: 20px;
+  @include mqSmMobileWidth() {
+    display: none;
+  }
 }
