@@ -14,9 +14,11 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 // https://www.gatsbyjs.org/docs/creating-and-modifying-pages/
 // https://medium.com/significa/i18n-with-gatsby-528607b4da81
 exports.onCreatePage = ({ page, actions }) => {
-  const { createPage, deletePage } = actions;
+  const { createPage, deletePage, createRedirect } = actions;
   return new Promise(resolve => {
     deletePage(page);
+    // https://github.com/gatsbyjs/gatsby/issues/18665
+    createRedirect({ fromPath: '/', toPath: '/u', isPermanent: true, redirectInBrowser: true });
     Object.keys(locales.localeMap).map(lang => {
       const { locale: currentLocale, path: currentLocalePath } = locales.localeMap[lang];
       const localizedPath = `${locales.getDefaultLocale() === currentLocale ? '' : currentLocalePath}${page.path}`;

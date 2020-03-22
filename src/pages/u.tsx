@@ -9,8 +9,7 @@ import FileUploader from '@/components/file-uploader';
 import UploaderInfo from '@/components/uploader-info';
 
 import 'rsuite/dist/styles/rsuite-default.css';
-// TODO: support dark mode in rsuite by dynamically change script
-import './index.scss';
+import './u.scss';
 
 export default ({ pathContext }: ReplaceComponentRendererArgs) => {
   const { locale } = pathContext as any;
