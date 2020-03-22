@@ -56,3 +56,9 @@
 .bottom button {
   margin-right: 8px;
 }
+
+.rsvg path {
+  @include css4() {
+    fill: var(--fileListNavManClr);
+  }
+}

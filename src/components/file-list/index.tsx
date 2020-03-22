@@ -1,5 +1,8 @@
 import React from 'react';
 import { Button } from 'rsuite';
+import { ReactSVG } from 'react-svg';
+// eslint-disable-next-line
+import { globalHistory as history } from '@reach/router'
 
 import { useLocale } from '@/utils/hooks';
 import { formatLastModifyDate } from '@/utils/date';
@@ -20,6 +23,11 @@ export default ({
   fileList = [],
 }: FileListProps) => {
   const { formatMessage } = useLocale();
+  const { location: { origin } } = history;
+  if (!fileList.length) {
+    return <ReactSVG className={fileListStyle.rsvg} src={`${origin}/baby-boy.svg`} />;
+  }
+
   return (
     <div className={fileListStyle.container}>
       {

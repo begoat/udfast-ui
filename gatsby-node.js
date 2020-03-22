@@ -13,6 +13,7 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 
 // https://www.gatsbyjs.org/docs/creating-and-modifying-pages/
 // https://medium.com/significa/i18n-with-gatsby-528607b4da81
+// https://www.gatsbyjs.org/docs/creating-a-local-plugin/
 exports.onCreatePage = ({ page, actions }) => {
   const { createPage, deletePage, createRedirect } = actions;
   return new Promise(resolve => {

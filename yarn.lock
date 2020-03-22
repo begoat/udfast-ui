@@ -1350,6 +1350,13 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@tanem/svg-injector@^8.0.43":
+  version "8.0.44"
+  resolved "https://registry.npm.taobao.org/@tanem/svg-injector/download/@tanem/svg-injector-8.0.44.tgz#deb987ddb8c43729613dc2e05415372772bc5d4a"
+  integrity sha1-3rmH3bjENylhPcLgVBU3J3K8XUo=
+  dependencies:
+    "@babel/runtime" "^7.8.7"
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/@types/color-name/download/@types/color-name-1.1.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fcolor-name%2Fdownload%2F%40types%2Fcolor-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -10687,6 +10694,15 @@ react-side-effect@^1.1.0:
   integrity sha1-DpQMePq6DHO5sOupzT3ajft+fa4=
   dependencies:
     shallowequal "^1.0.1"
+
+react-svg@^11.0.15:
+  version "11.0.15"
+  resolved "https://registry.npm.taobao.org/react-svg/download/react-svg-11.0.15.tgz#8739a4f7736613741781fbc5de479af763b3a9c0"
+  integrity sha1-hzmk93NmE3QXgfvF3kea92OzqcA=
+  dependencies:
+    "@babel/runtime" "^7.8.7"
+    "@tanem/svg-injector" "^8.0.43"
+    prop-types "^15.7.2"
 
 react-virtualized@^9.21.0:
   version "9.21.2"
