@@ -6,6 +6,7 @@ import Layout from '@/components/layout';
 import LocaleProvider from '@/components/locale-provider';
 import ErrorBoundary from '@/components/error-boundary';
 import FileUploader from '@/components/file-uploader';
+import UploaderInfo from '@/components/uploader-info';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 // TODO: support dark mode in rsuite by dynamically change script
@@ -20,6 +21,9 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
           <SEO title="upload-side" />
           <div className='file-uploader'>
             <FileUploader />
+          </div>
+          <div className='uploader-info'>
+            <UploaderInfo peerId="123123123" />
           </div>
           <></>
         </Layout>

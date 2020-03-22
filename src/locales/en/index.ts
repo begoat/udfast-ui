@@ -9,4 +9,6 @@ export default {
   'shareSite': 'share',
   'fileDropActive': 'Loose mouse and upload your file',
   'fileDropNotActive': 'Drag files here',
+  'copy': 'Copy',
+  'tempAddress': 'temp address for sharing, useful only when online'
 };

@@ -9,4 +9,6 @@ export default {
   'shareSite': '分享',
   'fileDropActive': '松开即可上传',
   'fileDropNotActive': '拖拽文件上传',
+  'copy': '复制',
+  'tempAddress': '临时访问地址，仅仅本地在线时有效'
 };
