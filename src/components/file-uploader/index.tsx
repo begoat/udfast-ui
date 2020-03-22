@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { Loader } from 'rsuite';
 import { useDropzone } from 'react-dropzone';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
@@ -9,10 +10,16 @@ import uploaderStyle from './index.module.scss';
 
 console.log('uploaderStyle', uploaderStyle);
 
+interface FileUploaderProps {
+  loading?: boolean;
+}
+
 /**
  * for testing, https://github.com/react-dropzone/react-dropzone#testing
  */
-export default () => {
+export default ({
+  loading
+}: FileUploaderProps) => {
   const { formatMessage } = useLocale();
   const data = useStaticQuery(graphql`
     query {
@@ -35,6 +42,14 @@ export default () => {
     getInputProps,
     isDragActive
   } = useDropzone({ onDrop });
+
+  if (loading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div {...getRootProps({ className: uploaderStyle.container })}>
