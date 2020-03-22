@@ -1,0 +1,47 @@
+@import '../../styles/utils.scss';
+@import '../../styles/common.scss';
+
+.container {
+  width: 100%;
+}
+
+.container > div {
+  height: 90px;
+  border-radius: 10px;
+}
+
+.container > div:nth-child(odd) {
+  @include css4() {
+    background-color: var(--fileListOddBg);
+  }
+}
+
+.container > div:nth-child(even) {
+  @include css4() {
+    background-color: var(--fileListEvenBg);
+  }
+}
+
+.entity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottom {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.bottom button {
+  margin-right: 8px;
+}

@@ -7,6 +7,7 @@ import LocaleProvider from '@/components/locale-provider';
 import ErrorBoundary from '@/components/error-boundary';
 import FileUploader from '@/components/file-uploader';
 import UploaderInfo from '@/components/uploader-info';
+import FileList from '@/components/file-list';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 import './u.scss';
@@ -24,7 +25,9 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
           <div className='uploader-info'>
             <UploaderInfo peerId="123123123" />
           </div>
-          <></>
+          <div className='file-list'>
+            <FileList />
+          </div>
         </Layout>
       </LocaleProvider>
     </ErrorBoundary>
