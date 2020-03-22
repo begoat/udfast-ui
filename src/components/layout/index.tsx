@@ -1,17 +1,22 @@
 import React from 'react';
-import VConsole from 'vconsole';
+
+import { checkRunOnClient } from '@/utils/env';
 
 import Header from '../header';
 import Navbar from '../navbar';
-
 import './index.css';
+
+if (checkRunOnClient()) {
+  // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+  const VConsole = require('vconsole');
+  // eslint-disable-next-line no-new
+  new VConsole();
+}
 
 interface LayoutProps {
   children?: Array<React.ReactChild>;
 }
 
-// eslint-disable-next-line no-new
-new VConsole();
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>

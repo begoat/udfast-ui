@@ -2,6 +2,7 @@ import { StorageKeyForTheme } from '@/config';
 import { CustomSubscription } from '@/utils/subscriber';
 
 import { getLStorage, setLStorage } from '../local-storage';
+import { checkRunOnClient } from '../env';
 
 export enum Theme {
   LIGHT = 'light',
@@ -35,6 +36,10 @@ export const setTheme = (theme: Theme) => {
  * otherwise use user's choice
  */
 const setupEvtListener = () => {
+  if (!checkRunOnClient()) {
+    return;
+  }
+
   const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const setThemeByMatchMedia = (e: MediaQueryListEvent | MediaQueryList) => {
     setTheme(e.matches ? Theme.DARK : Theme.LIGHT);

@@ -1,8 +1,14 @@
+import { checkRunOnClient } from '../env';
+
 export const setLStorage = (key: string, value: string) => {
-  localStorage.setItem(key, value);
-  return true;
+  if (checkRunOnClient()) {
+    localStorage.setItem(key, value);
+    return true;
+  }
 };
 
 export const getLStorage = (key: string) => {
-  return localStorage.getItem(key);
+  if (checkRunOnClient()) {
+    return localStorage.getItem(key);
+  }
 };
