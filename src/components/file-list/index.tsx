@@ -6,16 +6,11 @@ import { globalHistory as history } from '@reach/router'
 
 import { useLocale } from '@/utils/hooks';
 import { formatLastModifyDate } from '@/utils/date';
+import { getFileIdentifierAttr } from '@/utils/data';
 
 import fileListStyle from './index.module.scss';
 
-export interface CustomFile extends File {
-  fileId: string;
-  hidden: boolean;
-  passwd: string;
-}
-
-interface FileListProps {
+export interface FileListProps {
   fileList: Array<CustomFile>;
 }
 
@@ -32,7 +27,7 @@ export default ({
     <div className={fileListStyle.container}>
       {
         fileList.map(f => (
-          <div className={fileListStyle.entity} key={`${f.name}-${f.lastModified}`}>
+          <div className={fileListStyle.entity} key={getFileIdentifierAttr(f)}>
             <div className={fileListStyle.top}>
               <span>{formatMessage('fileName')}:{f.name}</span>
               <span>{formatMessage('fileSize')}:{f.size}</span>

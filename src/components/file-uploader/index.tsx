@@ -12,13 +12,15 @@ console.log('uploaderStyle', uploaderStyle);
 
 interface FileUploaderProps {
   loading?: boolean;
+  handleSelectNewFile: (files: File[]) => void;
 }
 
 /**
  * for testing, https://github.com/react-dropzone/react-dropzone#testing
  */
 export default ({
-  loading
+  loading,
+  handleSelectNewFile
 }: FileUploaderProps) => {
   const { formatMessage } = useLocale();
   const data = useStaticQuery(graphql`
@@ -35,7 +37,8 @@ export default ({
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     console.log('onDrop', acceptedFiles);
-  }, []);
+    handleSelectNewFile(acceptedFiles);
+  }, [handleSelectNewFile]);
 
   const {
     getRootProps,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ReplaceComponentRendererArgs } from 'gatsby';
+import { Alert } from 'rsuite';
 import { UController } from 'udfast-core';
 
 import SEO from '@/components/seo-helmet';
@@ -9,23 +10,47 @@ import ErrorBoundary from '@/components/error-boundary';
 import FileUploader from '@/components/file-uploader';
 import UploaderInfo from '@/components/uploader-info';
 import FileList from '@/components/file-list';
+import { initPeer } from '@/utils/peer';
+import { checkFileExisted } from '@/utils/data';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 import './u.scss';
 
 export default ({ pathContext }: ReplaceComponentRendererArgs) => {
   const { locale } = pathContext as any;
-  const [loading, setLoading] = useState(true);
-  const [fileList, setFileList] = useState();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [uploadController, setUploadController] = useState<UController>();
+  const [fileList, setFileList] = useState<CustomFile[]>([]);
+
+  const handleSelectNewFile = useCallback((files: File[]) => {
+    setFileList(prevFileList => {
+      return files.reduce((accu, curr) => {
+        if (checkFileExisted(curr, prevFileList)) {
+          return accu;
+        }
+
+        const fileId = uploadController?.registerFile(curr) || '';
+        let customFile = curr as CustomFile;
+        // FIXME: why {...curr, attr1: 'attr1'}
+        customFile.fileId = fileId;
+        customFile.hidden = false;
+        customFile.passwd = '';
+        console.log(customFile);
+        accu = accu.concat([customFile]);
+        return accu;
+      }, prevFileList);
+    });
+  }, [uploadController]);
+
   useEffect(() => {
     setLoading(true);
-    UController.init()
-      .then(() => {
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+    initPeer().then(uController => {
+      setUploadController(uController);
+    }).catch(() => {
+      Alert.error('Try Later And Contact Admin');
+    }).finally(() => {
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -36,14 +61,14 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
           <div className="body-container">
             <div>
               <div className='file-uploader'>
-                <FileUploader />
+                <FileUploader loading={loading} handleSelectNewFile={handleSelectNewFile} />
               </div>
               <div className='uploader-info'>
                 <UploaderInfo peerId="123123123" />
               </div>
             </div>
             <div className='file-list'>
-              <FileList fileList={[]} />
+              <FileList fileList={fileList} />
             </div>
           </div>
         </Layout>
