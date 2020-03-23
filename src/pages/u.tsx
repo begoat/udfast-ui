@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ReplaceComponentRendererArgs } from 'gatsby';
 import { Alert } from 'rsuite';
-import { UController } from 'udfast-core';
 
 import SEO from '@/components/seo-helmet';
 import Layout from '@/components/layout';
@@ -12,14 +11,21 @@ import UploaderInfo from '@/components/uploader-info';
 import UploadFileList from '@/components/file-list/upload';
 import { initUSidePeer } from '@/utils/peer';
 import { checkFileExisted } from '@/utils/data';
+import { checkRunOnClient } from '@/utils/env';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 import './u.scss';
 
+let udfastCore: any;
+if (checkRunOnClient()) {
+  // eslint-disable-next-line global-require
+  udfastCore = require('udfast-core');
+}
+
 export default ({ pathContext }: ReplaceComponentRendererArgs) => {
   const { locale } = pathContext as any;
   const [loading, setLoading] = useState<boolean>(true);
-  const [uploadController, setUploadController] = useState<UController>();
+  const [uploadController, setUploadController] = useState<typeof udfastCore.UController>();
   const [fileList, setFileList] = useState<CustomFile[]>([]);
 
   const handleSelectNewFile = useCallback((files: File[]) => {
@@ -64,7 +70,7 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
                 <FileUploader loading={loading} handleSelectNewFile={handleSelectNewFile} />
               </div>
               <div className='uploader-info'>
-                <UploaderInfo peerId="123123123" />
+                <UploaderInfo peerId={uploadController?.getMainPeerId() || ''} />
               </div>
             </div>
             <div className='file-list'>

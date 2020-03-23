@@ -1,8 +1,14 @@
-import { UController, DController } from 'udfast-core';
+import { checkRunOnClient } from '@/utils/env';
+
+let udfastCore: any;
+if (checkRunOnClient()) {
+  // eslint-disable-next-line global-require
+  udfastCore = require('udfast-core');
+}
 
 const retryInterval = 500;
 
-export const initUSidePeer = (): Promise<UController> => {
+export const initUSidePeer = (): Promise<typeof udfastCore.UController> => {
   return new Promise((resolve, reject) => {
     const initFn = (tryTime = 1) => {
       // FIXME: still trying, and generating too much connections
@@ -11,8 +17,8 @@ export const initUSidePeer = (): Promise<UController> => {
         return;
       }
 
-      UController.init()
-        .then((uController) => {
+      udfastCore.UController.init()
+        .then((uController: any) => {
           resolve(uController);
         })
         .catch(() => {
@@ -20,13 +26,13 @@ export const initUSidePeer = (): Promise<UController> => {
             initFn(tryTime + 1);
           }, retryInterval);
         });
-    }
+    };
 
     initFn();
   });
 };
 
-export const initDSidePeer = (): Promise<DController> => {
+export const initDSidePeer = (): Promise<typeof udfastCore.DController> => {
   return new Promise((resolve, reject) => {
     const initFn = (tryTime = 1) => {
       // FIXME: still trying, and generating too much connections
@@ -35,8 +41,8 @@ export const initDSidePeer = (): Promise<DController> => {
         return;
       }
 
-      DController.init()
-        .then((uController) => {
+      udfastCore.DController.init()
+        .then((uController: any) => {
           resolve(uController);
         })
         .catch(() => {
@@ -44,7 +50,7 @@ export const initDSidePeer = (): Promise<DController> => {
             initFn(tryTime + 1);
           }, retryInterval);
         });
-    }
+    };
 
     initFn();
   });

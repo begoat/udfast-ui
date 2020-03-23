@@ -18,7 +18,7 @@ export default ({
   const [modalShow, setModalShow] = useState(false);
   const { location: { origin } } = history;
   const url = useMemo(() => {
-    return `${origin}/d/${peerId}`;
+    return `${origin}/d?peerId=${peerId}`;
   }, [peerId, origin]);
   const { formatMessage } = useLocale();
   const handleShowQrCode = useCallback(() => {
