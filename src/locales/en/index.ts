@@ -23,5 +23,7 @@ export default {
   'details': 'Details',
   'uploadSide': 'Upload Side',
   'downloadSide': 'Download Side',
-  '404': '404 NOT FOUND'
+  '404': '404 NOT FOUND',
+  'download': '下载',
+  'preview': '预览',
 };

@@ -12,6 +12,7 @@ import fileListStyle from './index.module.scss';
 
 export interface FileListProps {
   fileList: Array<CustomFile>;
+  operations: (file: CustomFile) => JSX.Element[];
 }
 
 export default ({

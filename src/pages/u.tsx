@@ -9,7 +9,7 @@ import LocaleProvider from '@/components/locale-provider';
 import ErrorBoundary from '@/components/error-boundary';
 import FileUploader from '@/components/file-uploader';
 import UploaderInfo from '@/components/uploader-info';
-import FileList from '@/components/file-list';
+import UploadFileList from '@/components/file-list/upload';
 import { initPeer } from '@/utils/peer';
 import { checkFileExisted } from '@/utils/data';
 
@@ -68,7 +68,7 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
               </div>
             </div>
             <div className='file-list'>
-              <FileList fileList={fileList} />
+              <UploadFileList fileList={fileList} />
             </div>
           </div>
         </Layout>

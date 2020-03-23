@@ -23,5 +23,7 @@ export default {
   'details': '详情',
   'uploadSide': '上传端',
   'downloadSide': '下载端',
-  '404': '404 页面没了'
+  '404': '404 页面没了',
+  'download': '下载',
+  'preview': '预览',
 };
