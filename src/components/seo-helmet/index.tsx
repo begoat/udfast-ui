@@ -10,8 +10,17 @@ import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import { getTheme } from '@/utils/multi-theme';
+import { useLocale } from '@/utils/hooks';
+import { en } from '@/locales';
 
-function SEO({ description = '', lang = 'en', meta = [], title }: any) {
+interface SEOProps {
+  description?: string;
+  lang?: string;
+  meta?: Array<any>;
+  titleKey: keyof typeof en;
+}
+
+function SEO({ description = '', lang = 'en', meta = [], titleKey }: SEOProps) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -26,7 +35,9 @@ function SEO({ description = '', lang = 'en', meta = [], title }: any) {
     `
   );
 
+  const { formatMessage } = useLocale();
   const metaDescription = description || site.siteMetadata.description;
+  const title = formatMessage(titleKey);
 
   return (
     <Helmet

@@ -56,8 +56,8 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
   return (
     <ErrorBoundary>
       <LocaleProvider locale={locale}>
-        <Layout>
-          <SEO title="upload-side" />
+        <Layout titleKey='uploadSide'>
+          <SEO titleKey='uploadSide' />
           <div className="body-container">
             <div>
               <div className='file-uploader'>

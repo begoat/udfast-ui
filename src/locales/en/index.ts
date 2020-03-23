@@ -20,5 +20,8 @@ export default {
   'hide': 'Hide',
   'show': 'Show',
   'delete': 'Delete',
-  'details': 'Details'
+  'details': 'Details',
+  'uploadSide': 'Upload Side',
+  'downloadSide': 'Download Side',
+  '404': '404 NOT FOUND'
 };

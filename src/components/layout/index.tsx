@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { checkRunOnClient } from '@/utils/env';
+import { useLocale } from '@/utils/hooks';
+import { en } from '@/locales';
 
 import Header from '../header';
 import Navbar from '../navbar';
@@ -14,14 +16,16 @@ if (checkRunOnClient()) {
 }
 
 interface LayoutProps {
+  titleKey: keyof typeof en;
   children?: Array<React.ReactChild>;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, titleKey }: LayoutProps) => {
+  const { formatMessage } = useLocale();
   return (
     <>
       <Header />
-      <Navbar />
+      <Navbar title={formatMessage(titleKey)} />
       <div className={layoutStyle.main}>
         <main>{children}</main>
       </div>

@@ -20,5 +20,8 @@ export default {
   'hide': '隐藏',
   'show': '显示',
   'delete': '删除',
-  'details': '详情'
+  'details': '详情',
+  'uploadSide': '上传端',
+  'downloadSide': '下载端',
+  '404': '404 页面没了'
 };

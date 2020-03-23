@@ -10,8 +10,8 @@ const NotFoundPage = ({ pathContext }: ReplaceComponentRendererArgs) => {
   const { locale } = pathContext as any;
   return (
     <LocaleProvider locale={locale}>
-      <Layout>
-        <SEO title="404: Not found" />
+      <Layout titleKey='404'>
+        <SEO titleKey='404' />
         <h1>NOT FOUND</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
       </Layout>
