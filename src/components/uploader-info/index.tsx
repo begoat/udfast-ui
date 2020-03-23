@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { Button, Modal } from 'rsuite';
 import QRCode from 'qrcode.react';
-// eslint-disable-next-line
-import { globalHistory as history } from '@reach/router'
+import { globalHistory as history } from '@reach/router';
 
 import { useLocale } from '@/utils/hooks';
 import { copyToClipboard } from '@/utils/clipboard';

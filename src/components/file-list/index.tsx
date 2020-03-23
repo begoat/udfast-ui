@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button } from 'rsuite';
 import { ReactSVG } from 'react-svg';
-// eslint-disable-next-line
-import { globalHistory as history } from '@reach/router'
+import { globalHistory as history } from '@reach/router';
 
 import { useLocale } from '@/utils/hooks';
 import { formatLastModifyDate } from '@/utils/date';

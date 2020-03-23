@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { Button } from 'rsuite';
-// eslint-disable-next-line
-import { globalHistory as history } from '@reach/router'
+import { globalHistory as history } from '@reach/router';
 import { navigate } from 'gatsby';
 
 import { localeCandidate, getLocalei18nByLocale, getLocalePathByLocale } from '@/locales';
