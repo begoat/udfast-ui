@@ -10,7 +10,7 @@ import ErrorBoundary from '@/components/error-boundary';
 import FileUploader from '@/components/file-uploader';
 import UploaderInfo from '@/components/uploader-info';
 import UploadFileList from '@/components/file-list/upload';
-import { initPeer } from '@/utils/peer';
+import { initUSidePeer } from '@/utils/peer';
 import { checkFileExisted } from '@/utils/data';
 
 import 'rsuite/dist/styles/rsuite-default.css';
@@ -44,7 +44,7 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
 
   useEffect(() => {
     setLoading(true);
-    initPeer().then(uController => {
+    initUSidePeer().then(uController => {
       setUploadController(uController);
     }).catch(() => {
       Alert.error('Try Later And Contact Admin');
