@@ -9,23 +9,16 @@ import ErrorBoundary from '@/components/error-boundary';
 import FileUploader from '@/components/file-uploader';
 import UploaderInfo from '@/components/uploader-info';
 import UploadFileList from '@/components/file-list/upload';
-import { initUSidePeer } from '@/utils/peer';
+import { initUSidePeer, UploadController } from '@/utils/peer';
 import { checkFileExisted } from '@/utils/data';
-import { checkRunOnClient } from '@/utils/env';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 import './u.scss';
 
-let udfastCore: any;
-if (checkRunOnClient()) {
-  // eslint-disable-next-line global-require
-  udfastCore = require('udfast-core');
-}
-
 export default ({ pathContext }: ReplaceComponentRendererArgs) => {
   const { locale } = pathContext as any;
   const [loading, setLoading] = useState<boolean>(true);
-  const [uploadController, setUploadController] = useState<typeof udfastCore.UController>();
+  const [uploadController, setUploadController] = useState<UploadController>();
   const [fileList, setFileList] = useState<CustomFile[]>([]);
 
   const handleSelectNewFile = useCallback((files: File[]) => {
