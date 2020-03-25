@@ -11,6 +11,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: UDFastCore
+      uses: actions/checkout@v2
+      with:
+        repository: begoat/udfast-core
+        token: ${{ secrets.GitHub_PAT }}
+        path: udfast-core
+
+    - name: build core
+      run: cd udfast-core && yarn && yarn run build && yarn link
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -32,5 +42,7 @@ jobs:
           ${{ runner.os }}-node-
 
     - run: yarn --frozen-lockfile
+
+    - run: yarn link udfast-core
 
     - run: yarn run build
