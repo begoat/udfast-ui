@@ -6,14 +6,14 @@ import { useLocale } from '@/utils/hooks';
 import FileList from '../index';
 
 interface UploadFileListProps {
-  fileList: Array<CustomFile>;
+  fileList: Array<FileEntity>;
 }
 
 export default ({
   fileList
 }: UploadFileListProps) => {
   const { formatMessage } = useLocale();
-  const renderOps = useCallback((file: CustomFile) => {
+  const renderOps = useCallback((file: FileEntity) => {
     return [
       <Button key='encrypt' size='sm'>{file.passwd ? formatMessage('decrypt') : formatMessage('encrypt')}</Button>,
       <Button key='hide' size='sm'>{file.hidden ? formatMessage('hide') : formatMessage('show')}</Button>,

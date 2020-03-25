@@ -20,7 +20,7 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
   const peerId: string = queryString.parse(search).peerId as any;
   const [loading, setLoading] = useState<boolean>(true);
   const [downloadController, setDownloadController] = useState<DController>();
-  const [fileList, setFileList] = useState([]);
+  const [fileList, setFileList] = useState<Array<FileEntity>>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -36,8 +36,14 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
   const getFileList = useCallback((dController: DController) => {
     if (peerId) {
       dController.getFileList(peerId)
-        .then((file: any) => {
-          console.log('file!!!', file);
+        .then(file => {
+          setFileList(file.map(f => ({
+            fileId: f.fileId,
+            name: f.fileName,
+            size: f.fileSize,
+            hidden: false,
+            passwd: ''
+          })));
         });
     }
   }, [peerId]);
@@ -46,7 +52,7 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
     if (downloadController) {
       getFileList(downloadController);
     }
-  }, [downloadController]);
+  }, [downloadController, getFileList]);
 
   return (
     <ErrorBoundary>

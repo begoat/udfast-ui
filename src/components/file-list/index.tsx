@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'rsuite';
 import { ReactSVG } from 'react-svg';
 import { globalHistory as history } from '@reach/router';
 
@@ -10,12 +9,13 @@ import { getFileIdentifierAttr } from '@/utils/data';
 import fileListStyle from './index.module.scss';
 
 export interface FileListProps {
-  fileList: Array<CustomFile>;
-  operations: (file: CustomFile) => JSX.Element[];
+  fileList: Array<FileEntity>;
+  operations: (file: FileEntity) => JSX.Element[];
 }
 
 export default ({
   fileList = [],
+  operations
 }: FileListProps) => {
   const { formatMessage } = useLocale();
   const { location: { origin } } = history;
@@ -33,14 +33,11 @@ export default ({
               <span>{formatMessage('fileSize')}:{f.size}</span>
             </div>
             <div className={fileListStyle.top}>
-              <span>{formatMessage('lastMTime')}:{formatLastModifyDate(new Date(f.lastModified))}</span>
+              <span>{formatMessage('lastMTime')}:{f.lastModified && formatLastModifyDate(new Date(f.lastModified))}</span>
               <span>{formatMessage('fileId')}:{f.fileId}</span>
             </div>
             <div className={fileListStyle.bottom}>
-              <Button size='sm'>{f.passwd ? formatMessage('decrypt') : formatMessage('encrypt')}</Button>
-              <Button size='sm'>{f.hidden ? formatMessage('hide') : formatMessage('show')}</Button>
-              <Button size='sm'>{formatMessage('delete')}</Button>
-              <Button appearance='primary' size='sm'>{formatMessage('details')}</Button>
+              {operations(f)}
             </div>
           </div>
         ))

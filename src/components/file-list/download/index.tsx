@@ -6,7 +6,7 @@ import { useLocale } from '@/utils/hooks';
 import FileList from '../index';
 
 interface DownloadFileListProps {
-  fileList: Array<CustomFile>;
+  fileList: Array<FileEntity>;
 }
 
 export default ({

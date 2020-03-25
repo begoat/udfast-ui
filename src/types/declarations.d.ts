@@ -13,3 +13,17 @@ declare interface CustomFile extends File {
   hidden: boolean;
   passwd: string;
 }
+
+interface FileAttr {
+  name: string;
+  size: number;
+  lastModified?: number;
+}
+
+interface FileExt {
+  fileId: string;
+  hidden: boolean;
+  passwd: string;
+}
+
+type FileEntity = FileAttr & FileExt;
