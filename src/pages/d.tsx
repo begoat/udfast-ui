@@ -10,6 +10,7 @@ import LocaleProvider from '@/components/locale-provider';
 import ErrorBoundary from '@/components/error-boundary';
 import DownloadFilelist from '@/components/file-list/download';
 import { initDSidePeer, DController } from '@/utils/peer';
+import { generateDownloadId } from '@/utils/random';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 import './d.scss';
@@ -48,6 +49,15 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
     }
   }, [peerId]);
 
+  const startDownload = useCallback((fileId: string) => {
+    const downloadId = generateDownloadId();
+    // eslint-disable-next-line no-unused-expressions
+    downloadController?.initDownload(downloadId, peerId, fileId)
+      .then(() => {
+        downloadController.startDownloadFile(downloadId);
+      });
+  }, [downloadController, peerId]);
+
   useEffect(() => {
     if (downloadController) {
       getFileList(downloadController);
@@ -61,7 +71,7 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
           <SEO titleKey='downloadSide' />
           <div className="body-container">
             <div className='file-list'>
-              <DownloadFilelist fileList={fileList} />
+              <DownloadFilelist fileList={fileList} startDownload={startDownload} />
             </div>
           </div>
         </Layout>
