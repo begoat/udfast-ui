@@ -1,8 +1,9 @@
 import { dynamicImportUDFastCore } from '@/utils/env';
 import { DController, UploadController } from './wrapper';
 
-const retryInterval = 500;
+const retryInterval = 2500;
 
+// FIXME: IT"S THE PROBLEM MAYBE
 export const initUSidePeer = async (): Promise<UploadController> => {
   const UDFastCore = await dynamicImportUDFastCore();
   if (!UDFastCore) return Promise.reject(1);
@@ -19,7 +20,8 @@ export const initUSidePeer = async (): Promise<UploadController> => {
           console.log('promise resolved', uController);
           resolve(uController);
         })
-        .catch(() => {
+        .catch((e: string) => {
+          console.log('reject type:::', e)
           setTimeout(() => {
             initFn(tryTime + 1);
           }, retryInterval);
@@ -47,6 +49,7 @@ export const initDSidePeer = async (): Promise<DController> => {
           resolve(dController);
         })
         .catch(() => {
+          console.log('123123')
           setTimeout(() => {
             initFn(tryTime + 1);
           }, retryInterval);
