@@ -4,3 +4,4 @@
  */
 export type { DController } from 'udfast-core/lib/src/service/file-sharing/download-side/controller/DController.d';
 export type { UploadController } from 'udfast-core/lib/src/service/file-sharing/upload-side/controller/UploadController.d';
+export { CbType } from 'udfast-core/lib/src/service/file-sharing/types';

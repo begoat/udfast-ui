@@ -9,7 +9,7 @@ import Layout from '@/components/layout';
 import LocaleProvider from '@/components/locale-provider';
 import ErrorBoundary from '@/components/error-boundary';
 import DownloadFilelist from '@/components/file-list/download';
-import { initDSidePeer, DController } from '@/utils/peer';
+import { initDSidePeer, DController, CbType } from '@/utils/peer';
 import { generateDownloadId } from '@/utils/random';
 
 import 'rsuite/dist/styles/rsuite-default.css';
@@ -49,14 +49,28 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
     }
   }, [peerId]);
 
+  const registerAcc = useCallback((downloadId: string) => {
+    console.log('downloadId', downloadId, 'downloadACC');
+  }, []);
+
+  const registerProgress = useCallback((downloadId: string, chunkIdx: number, totalNumOfChunks: number, type: 'start' | 'download') => {
+    console.log('downloadId', downloadId, 'downloading', chunkIdx, totalNumOfChunks, type);
+  }, []);
+
   const startDownload = useCallback((fileId: string) => {
     const downloadId = generateDownloadId();
     // eslint-disable-next-line no-unused-expressions
     downloadController?.initDownload(downloadId, peerId, fileId)
       .then(() => {
+        downloadController?.registerCbOnDownloadId(downloadId, () => {
+          registerAcc(downloadId);
+        }, CbType.ACC);
+        downloadController?.registerCbOnDownloadId(downloadId, (chunkIdx: number, totalNumOfChunks: number, type: 'start' | 'download') => {
+          registerProgress(downloadId, chunkIdx, totalNumOfChunks, type);
+        }, CbType.PROGRESS);
         downloadController.startDownloadFile(downloadId);
       });
-  }, [downloadController, peerId]);
+  }, [downloadController, peerId, registerAcc]);
 
   useEffect(() => {
     if (downloadController) {
