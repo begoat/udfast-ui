@@ -19,23 +19,23 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
   const { locale } = pathContext as any;
   const [loading, setLoading] = useState<boolean>(true);
   const [uploadController, setUploadController] = useState<UploadController>();
-  const [fileList, setFileList] = useState<CustomFile[]>([]);
+  const [fileList, setFileList] = useState<UploadFileEntity[]>([]);
 
   const handleSelectNewFile = useCallback((files: File[]) => {
     setFileList(prevFileList => {
       return files.reduce((accu, curr) => {
-        if (checkFileExisted(curr, prevFileList)) {
+        if (checkFileExisted(curr, prevFileList.map(p => p.fileObj))) {
           return accu;
         }
 
         const fileId = uploadController?.registerFile(curr) || '';
-        let customFile = curr as CustomFile;
-        // FIXME: why {...curr, attr1: 'attr1'}
-        customFile.fileId = fileId;
-        customFile.hidden = false;
-        customFile.passwd = '';
-        console.log(customFile);
-        accu = accu.concat([customFile]);
+        let uploadFileEntity: UploadFileEntity = {
+          fileObj: curr,
+          fileId,
+          hidden: false,
+          passwd: '',
+        };
+        accu = accu.concat([uploadFileEntity]);
         return accu;
       }, prevFileList);
     });
@@ -67,7 +67,7 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
               </div>
             </div>
             <div className='file-list'>
-              <UploadFileList fileList={fileList} />
+              <UploadFileList fileList={fileList} setFileList={setFileList} />
             </div>
           </div>
         </Layout>

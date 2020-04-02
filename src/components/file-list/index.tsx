@@ -4,7 +4,7 @@ import { globalHistory as history } from '@reach/router';
 
 import { useLocale } from '@/utils/hooks';
 import { formatLastModifyDate } from '@/utils/date';
-import { getFileIdentifierAttr } from '@/utils/data';
+import { getFileIdentifierAttr, fmtFileSize } from '@/utils/data';
 
 import fileListStyle from './index.module.scss';
 
@@ -30,10 +30,14 @@ export default ({
           <div className={fileListStyle.entity} key={getFileIdentifierAttr(f)}>
             <div className={fileListStyle.top}>
               <span>{formatMessage('fileName')}:{f.name}</span>
-              <span>{formatMessage('fileSize')}:{f.size}</span>
+              <span>{formatMessage('fileSize')}:{fmtFileSize(f.size)}</span>
             </div>
             <div className={fileListStyle.top}>
-              <span>{formatMessage('lastMTime')}:{f.lastModified && formatLastModifyDate(new Date(f.lastModified))}</span>
+              {
+                f.lastModified && (
+                  <span>{formatMessage('lastMTime')}:{f.lastModified && formatLastModifyDate(new Date(f.lastModified))}</span>
+                )
+              }
               <span>{formatMessage('fileId')}:{f.fileId}</span>
             </div>
             <div className={fileListStyle.bottom}>

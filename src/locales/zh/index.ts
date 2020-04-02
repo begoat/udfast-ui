@@ -26,4 +26,5 @@ export default {
   '404': '404 页面没了',
   'download': '下载',
   'preview': '预览',
+  'fnNotSupport': '该功能暂时不支持'
 };

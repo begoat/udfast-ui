@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Button } from 'rsuite';
+import { Button, Alert } from 'rsuite';
 
 import { useLocale } from '@/utils/hooks';
 
@@ -21,8 +21,14 @@ export default ({
       startDownload(fileId);
     };
 
+    const handlePreview = () => {
+      const { fileId } = file;
+      console.log('fileId', fileId);
+      Alert.warning(formatMessage('fnNotSupport'));
+    };
+
     return [
-      <Button key='preview' size='sm'>{formatMessage('preview')}</Button>,
+      <Button key='preview' size='sm' onClick={handlePreview}>{formatMessage('preview')}</Button>,
       <Button key='download' appearance='primary' size='sm' onClick={handleDownload}>{formatMessage('download')}</Button>
     ];
   }, [formatMessage, startDownload]);

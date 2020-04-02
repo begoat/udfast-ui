@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ReplaceComponentRendererArgs } from 'gatsby';
-import { Alert } from 'rsuite';
+import { Alert, Loader } from 'rsuite';
 import { globalHistory as history } from '@reach/router';
 import * as queryString from 'query-string';
 
@@ -42,8 +42,6 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
             fileId: f.fileId,
             name: f.fileName,
             size: f.fileSize,
-            hidden: false,
-            passwd: ''
           })));
         });
     }
@@ -85,7 +83,13 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
           <SEO titleKey='downloadSide' />
           <div className="body-container">
             <div className='file-list'>
-              <DownloadFilelist fileList={fileList} startDownload={startDownload} />
+              {
+                loading ? (
+                  <Loader />
+                ) : (
+                  <DownloadFilelist fileList={fileList} startDownload={startDownload} />
+                )
+              }
             </div>
           </div>
         </Layout>

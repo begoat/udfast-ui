@@ -8,7 +8,8 @@ declare module '*.svg' {
   export default content;
 }
 
-declare interface CustomFile extends File {
+interface UploadFileEntity {
+  fileObj: File;
   fileId: string;
   hidden: boolean;
   passwd: string;
@@ -22,8 +23,7 @@ interface FileAttr {
 
 interface FileExt {
   fileId: string;
-  hidden: boolean;
-  passwd: string;
+  [key: string]: any;
 }
 
 type FileEntity = FileAttr & FileExt;

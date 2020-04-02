@@ -24,6 +24,7 @@ export default {
   'uploadSide': 'Upload Side',
   'downloadSide': 'Download Side',
   '404': '404 NOT FOUND',
-  'download': '下载',
-  'preview': '预览',
+  'download': 'Download',
+  'preview': 'Preview',
+  'fnNotSupport': 'The functionality isn\'t supportted yet',
 };
