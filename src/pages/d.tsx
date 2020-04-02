@@ -91,6 +91,15 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
                 )
               }
             </div>
+            <div className='2'>
+              {
+                loading ? (
+                  <Loader />
+                ) : (
+                  <span>Loading. click to show logs group message so that it appear here</span>
+                )
+              }
+            </div>
           </div>
         </Layout>
       </LocaleProvider>
