@@ -27,3 +27,34 @@ interface FileExt {
 }
 
 type FileEntity = FileAttr & FileExt;
+
+
+interface DownloadLogCommonEntity {
+  timestamp: number;
+  fileId: string;
+}
+
+interface DownloadLogProgressEntity extends DownloadLogCommonEntity {
+  logType: 'progress';
+  chunkIdx: number;
+  chunkStatus: 'start' | 'end';
+  totalNum: number;
+}
+
+interface DownloadLogAccEntity extends DownloadLogCommonEntity {
+  logType: 'acc';
+}
+
+interface DownloadLogCancelEntity extends DownloadLogCommonEntity {
+  logType: 'cancel';
+}
+
+interface DownloadLogExceptionEntity extends DownloadLogCommonEntity {
+  logType: 'exception';
+}
+
+type DownloadLogEntity =
+  DownloadLogProgressEntity
+  | DownloadLogAccEntity
+  | DownloadLogExceptionEntity
+  | DownloadLogCancelEntity;

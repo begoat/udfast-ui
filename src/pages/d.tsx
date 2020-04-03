@@ -9,8 +9,10 @@ import Layout from '@/components/layout';
 import LocaleProvider from '@/components/locale-provider';
 import ErrorBoundary from '@/components/error-boundary';
 import DownloadFilelist from '@/components/file-list/download';
+import LogContainer from '@/components/log-container';
 import { initDSidePeer, DController, CbType } from '@/utils/peer';
 import { generateDownloadId } from '@/utils/random';
+import { getCurrTimestamp } from '@/utils/date';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 import './d.scss';
@@ -22,6 +24,8 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [downloadController, setDownloadController] = useState<DController>();
   const [fileList, setFileList] = useState<Array<FileEntity>>([]);
+  const [logs, setLogs] = useState<{ [downloadId: string]: Array<DownloadLogEntity> }>({});
+  const [selectedDownloadId, setSelectedDownloadId] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -47,11 +51,21 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
     }
   }, [peerId]);
 
-  const registerAcc = useCallback((downloadId: string) => {
+  const registerAcc = useCallback((downloadId: string, fileId: string) => {
+    setLogs(prevLogs => ({
+      ...prevLogs,
+      [downloadId]: (prevLogs[downloadId] || []).concat([{ logType: 'acc', timestamp: getCurrTimestamp(), fileId }])
+    }));
     console.log('downloadId', downloadId, 'downloadACC');
   }, []);
 
-  const registerProgress = useCallback((downloadId: string, chunkIdx: number, totalNumOfChunks: number, type: 'start' | 'download') => {
+  const registerProgress = useCallback((downloadId: string, fileId: string, chunkIdx: number, totalNumOfChunks: number, type: 'start' | 'end') => {
+    setLogs(prevLogs => ({
+      ...prevLogs,
+      [downloadId]: (prevLogs[downloadId] || []).concat([
+        { logType: 'progress', timestamp: getCurrTimestamp(), chunkIdx, chunkStatus: type, totalNum: totalNumOfChunks, fileId }
+      ])
+    }));
     console.log('downloadId', downloadId, 'downloading', chunkIdx, totalNumOfChunks, type);
   }, []);
 
@@ -60,11 +74,21 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
     // eslint-disable-next-line no-unused-expressions
     downloadController?.initDownload(downloadId, peerId, fileId)
       .then(() => {
+        setFileList(prevList => prevList.map(p => {
+          if (p.fileId === fileId) {
+            return {
+              ...p,
+              downloadRecords: (p.downloadRecords || []).concat([downloadId])
+            };
+          }
+
+          return p;
+        }));
         downloadController?.registerCbOnDownloadId(downloadId, () => {
-          registerAcc(downloadId);
+          registerAcc(downloadId, fileId);
         }, CbType.ACC);
-        downloadController?.registerCbOnDownloadId(downloadId, (chunkIdx: number, totalNumOfChunks: number, type: 'start' | 'download') => {
-          registerProgress(downloadId, chunkIdx, totalNumOfChunks, type);
+        downloadController?.registerCbOnDownloadId(downloadId, (chunkIdx: number, totalNumOfChunks: number, type: 'start' | 'end') => {
+          registerProgress(downloadId, fileId, chunkIdx, totalNumOfChunks, type);
         }, CbType.PROGRESS);
         downloadController.startDownloadFile(downloadId);
       });
@@ -87,7 +111,7 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
                 loading ? (
                   <Loader />
                 ) : (
-                  <DownloadFilelist fileList={fileList} startDownload={startDownload} />
+                  <DownloadFilelist fileList={fileList} setSelectedDownloadId={setSelectedDownloadId} startDownload={startDownload} />
                 )
               }
             </div>
@@ -96,7 +120,7 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
                 loading ? (
                   <Loader />
                 ) : (
-                  <span>Loading. click to show logs group message so that it appear here</span>
+                  <LogContainer logs={logs[selectedDownloadId] || []} />
                 )
               }
             </div>

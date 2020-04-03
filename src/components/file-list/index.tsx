@@ -11,11 +11,13 @@ import fileListStyle from './index.module.scss';
 export interface FileListProps {
   fileList: Array<FileEntity>;
   operations: (file: FileEntity) => JSX.Element[];
+  clickHandler?: (file: FileEntity) => void;
 }
 
 export default ({
   fileList = [],
-  operations
+  operations,
+  clickHandler
 }: FileListProps) => {
   const { formatMessage } = useLocale();
   const { location: { origin } } = history;
@@ -27,7 +29,7 @@ export default ({
     <div className={fileListStyle.container}>
       {
         fileList.map(f => (
-          <div className={fileListStyle.entity} key={getFileIdentifierAttr(f)}>
+          <div className={fileListStyle.entity} key={getFileIdentifierAttr(f)} onClick={() => clickHandler && clickHandler(f)}>
             <div className={fileListStyle.top}>
               <span>{formatMessage('fileName')}:{f.name}</span>
               <span>{formatMessage('fileSize')}:{fmtFileSize(f.size)}</span>

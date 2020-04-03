@@ -64,6 +64,8 @@ module.exports = {
     "react-hooks/exhaustive-deps": WARNING,
     '@typescript-eslint/no-unused-expressions': OFF,
     'dot-notation': OFF,
-    '@typescript-eslint/no-extra-semi': OFF
+    '@typescript-eslint/no-extra-semi': OFF,
+    'jsx-a11y/no-static-element-interactions': OFF,
+    'jsx-a11y/click-events-have-key-events': OFF
   }
 };

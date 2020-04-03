@@ -1,0 +1,12 @@
+@import '../../styles/utils.scss';
+@import '../../styles/common.scss';
+
+.container {
+  max-height: 500px;
+  overflow-y: scroll;
+  margin-left: 50px;
+  @include mqSmMobileWidth() {
+    max-height: 180px;
+    margin-left: 0;
+  }
+}

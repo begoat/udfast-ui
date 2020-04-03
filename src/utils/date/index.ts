@@ -10,3 +10,7 @@ export const formatLastModifyDate = (date: Date) => {
 export const formatFullDate = (date: Date) => {
   return format(date, FULL_DATE_FORMAT);
 };
+
+export const getCurrTimestamp = (): number => {
+  return new Date().getTime();
+};

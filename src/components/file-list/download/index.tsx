@@ -8,11 +8,13 @@ import FileList from '../index';
 interface DownloadFileListProps {
   fileList: Array<FileEntity>;
   startDownload: (fileId: string) => void;
+  setSelectedDownloadId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default ({
   fileList,
-  startDownload
+  startDownload,
+  setSelectedDownloadId
 }: DownloadFileListProps) => {
   const { formatMessage } = useLocale();
   const renderOps = useCallback((file: FileEntity) => {
@@ -33,7 +35,12 @@ export default ({
     ];
   }, [formatMessage, startDownload]);
 
+  const handleClick = useCallback((file: FileEntity) => {
+    const lastDownloadId = (file.downloadRecords || []).slice().pop() || '';
+    setSelectedDownloadId(lastDownloadId);
+  }, [setSelectedDownloadId]);
+
   return (
-    <FileList operations={renderOps} fileList={fileList} />
+    <FileList operations={renderOps} fileList={fileList} clickHandler={handleClick} />
   );
 };
