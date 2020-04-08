@@ -1,3 +1,5 @@
+import { Alert } from 'rsuite';
+
 import { dynamicImportUDFastCore } from '@/utils/env';
 import { DController, UploadController } from './wrapper';
 
@@ -32,6 +34,10 @@ export const initUSidePeer = async (): Promise<UploadController> => {
   });
 };
 
+const errCbsForDownloader = [(e: Error) => {
+  Alert.error((e.message));
+}];
+
 export const initDSidePeer = async (): Promise<DController> => {
   const UDFastCore = await dynamicImportUDFastCore();
   if (!UDFastCore) return Promise.reject(1);
@@ -43,8 +49,8 @@ export const initDSidePeer = async (): Promise<DController> => {
         return;
       }
 
-      UDFastCore.DController.init()
-        .then(dController => {
+      UDFastCore.DController.init(errCbsForDownloader)
+        .then(dController=> {
           console.log('download promise resolved', dController);
           resolve(dController);
         })
