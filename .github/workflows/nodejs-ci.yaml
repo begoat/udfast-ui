@@ -45,4 +45,8 @@ jobs:
 
     - run: yarn link udfast-core
 
-    - run: yarn run build
+    - name: deploy sites
+      # if: github.event_name == 'release'
+      run: git config --global user.email "hylbegoat@gmail.com" && git config --global user.name "William Huang" && yarn run deploy:ci
+      env:
+        GITHUB_PAT: ${{ secrets.GitHub_PAT }}

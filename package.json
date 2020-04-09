@@ -58,6 +58,7 @@
     "eslint-plugin-react-hooks": "^2.5.0",
     "fork-ts-checker-webpack-plugin": "^4.1.0",
     "gatsby-plugin-sass": "^2.1.31",
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "sass": "^1.26.3"
   },
@@ -71,13 +72,17 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "build:sub": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
+    "serve:sub": "gatsby serve --prefix-paths",
     "clean": "gatsby clean",
     "lint": "eslint --ext .ts,.tsx src",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "deploy": "npm run clean && npm run build:sub && gh-pages -d public",
+    "deploy:ci": "npm run clean && npm run build:sub && gh-pages -d public -r https://$GITHUB_PAT@github.com/begoat/uifast-ui.git"
   },
   "repository": {
     "type": "git",
