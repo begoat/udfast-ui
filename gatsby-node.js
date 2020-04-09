@@ -19,6 +19,7 @@ exports.onCreatePage = ({ page, actions }) => {
   return new Promise(resolve => {
     deletePage(page);
     // https://github.com/gatsbyjs/gatsby/issues/18665
+    // FIXME: don't use this form of redirect! just create an index.html and return a <Redirect /> is fine.
     createRedirect({ fromPath: '/', toPath: '/u', isPermanent: true, redirectInBrowser: true });
     Object.keys(locales.localeMap).map(lang => {
       const { locale: currentLocale, path: currentLocalePath } = locales.localeMap[lang];
