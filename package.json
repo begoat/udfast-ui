@@ -82,7 +82,7 @@
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "deploy": "npm run clean && npm run build:sub && gh-pages -d public",
-    "deploy:ci": "npm run clean && npm run build:sub && gh-pages -d public -r https://$GITHUB_PAT@github.com/begoat/uifast-ui.git"
+    "deploy:ci": "npm run clean && npm run build:sub && gh-pages -d public -r https://$GITHUB_PAT@github.com/begoat/udfast-ui.git"
   },
   "repository": {
     "type": "git",
