@@ -14,7 +14,7 @@ type LocalMap = {
 
 export const localeMap: LocalMap = {
   [localeCandidate.EN_US]: {
-    path: 'en',
+    path: '',
     locale: localeCandidate.EN_US,
     i18n: 'en',
     default: true

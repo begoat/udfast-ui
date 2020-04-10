@@ -57,6 +57,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
     "fork-ts-checker-webpack-plugin": "^4.1.0",
+    "gatsby-plugin-remove-trailing-slashes": "^2.2.1",
     "gatsby-plugin-sass": "^2.1.31",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",

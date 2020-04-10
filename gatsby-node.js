@@ -23,7 +23,7 @@ exports.onCreatePage = ({ page, actions }) => {
     createRedirect({ fromPath: '/', toPath: '/u', isPermanent: true, redirectInBrowser: true });
     Object.keys(locales.localeMap).map(lang => {
       const { locale: currentLocale, path: currentLocalePath } = locales.localeMap[lang];
-      const localizedPath = `${locales.getDefaultLocale() === currentLocale ? '' : currentLocalePath}${page.path}`;
+      const localizedPath = `${currentLocalePath}${page.path}`;
       return createPage({
         ...page,
         path: localizedPath,

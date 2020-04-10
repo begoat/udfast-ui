@@ -32,6 +32,7 @@ module.exports = {
       options: {}
     },
     `gatsby-plugin-sass`,
+    `gatsby-plugin-remove-trailing-slashes`
     // { // actuall there is dart-scss that can correctly parse scss but it seems error will show on vscode
     //   resolve: `gatsby-plugin-sass`,
     //   options: {
