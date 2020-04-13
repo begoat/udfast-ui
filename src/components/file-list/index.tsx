@@ -1,10 +1,10 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import { globalHistory as history } from '@reach/router';
 
 import { useLocale } from '@/utils/hooks';
 import { formatLastModifyDate } from '@/utils/date';
 import { getFileIdentifierAttr, fmtFileSize } from '@/utils/data';
+import { prefixImgPath } from '@/utils/location';
 
 import fileListStyle from './index.module.scss';
 
@@ -20,9 +20,8 @@ export default ({
   clickHandler
 }: FileListProps) => {
   const { formatMessage } = useLocale();
-  const { location: { origin } } = history;
   if (!fileList.length) {
-    return <ReactSVG className={fileListStyle.rsvg} src={`${origin}/baby-boy.svg`} />;
+    return <ReactSVG className={fileListStyle.rsvg} src={`${prefixImgPath('baby-boy.svg')}`} />;
   }
 
   return (

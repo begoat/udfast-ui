@@ -72,8 +72,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "build:sub": "gatsby build --prefix-paths",
+    "build": "npm run clean && gatsby build",
+    "build:sub": "npm run clean && gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -82,8 +82,8 @@
     "lint": "eslint --ext .ts,.tsx src",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "deploy": "npm run clean && npm run build:sub && gh-pages -d public",
-    "deploy:ci": "npm run clean && npm run build:sub && gh-pages -d public -r https://$GITHUB_PAT@github.com/begoat/udfast-ui.git"
+    "deploy": "npm run build:sub && gh-pages -d public",
+    "deploy:ci": "npm run build:sub && gh-pages -d public -r https://$GITHUB_PAT@github.com/begoat/udfast-ui.git"
   },
   "repository": {
     "type": "git",

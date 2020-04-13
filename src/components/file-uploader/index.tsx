@@ -8,8 +8,6 @@ import { useLocale } from '@/utils/hooks';
 
 import uploaderStyle from './index.module.scss';
 
-console.log('uploaderStyle', uploaderStyle);
-
 interface FileUploaderProps {
   loading?: boolean;
   handleSelectNewFile: (files: File[]) => void;
