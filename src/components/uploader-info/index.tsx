@@ -4,6 +4,7 @@ import QRCode from 'qrcode.react';
 import { globalHistory as history } from '@reach/router';
 
 import { useLocale } from '@/utils/hooks';
+import { getRealPrefix } from '@/utils/location';
 import { copyToClipboard } from '@/utils/clipboard';
 
 import uploaderInfoStyle from './index.module.scss';
@@ -18,7 +19,7 @@ export default ({
   const [modalShow, setModalShow] = useState(false);
   const { location: { origin } } = history;
   const url = useMemo(() => {
-    return `${origin}/d?peerId=${peerId}`;
+    return `${origin}${getRealPrefix()}d?peerId=${peerId}`;
   }, [peerId, origin]);
   const { formatMessage } = useLocale();
   const handleShowQrCode = useCallback(() => {
