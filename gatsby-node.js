@@ -20,10 +20,17 @@ exports.onCreatePage = ({ page, actions }) => {
     deletePage(page);
     // https://github.com/gatsbyjs/gatsby/issues/18665
     // FIXME: don't use this form of redirect! just create an index.html and return a <Redirect /> is fine.
-    createRedirect({ fromPath: '/', toPath: '/u', isPermanent: true, redirectInBrowser: true });
+    // createRedirect({ fromPath: '/', toPath: '/u', isPermanent: true, redirectInBrowser: true });
+    createRedirect({ fromPath: '/zh', toPath: '/zh/zh', isPermanent: true, redirectInBrowser: true });
+    createRedirect({ fromPath: '/zh/', toPath: '/zh/zh', isPermanent: true, redirectInBrowser: true });
     Object.keys(locales.localeMap).map(lang => {
       const { locale: currentLocale, path: currentLocalePath } = locales.localeMap[lang];
       const localizedPath = `${currentLocalePath}${page.path}`;
+      if (localizedPath === '/zh') { // FIXME: don't know why it will generate /zh/zh /zh at the same time
+        resolve();
+        return;
+      }
+
       return createPage({
         ...page,
         path: localizedPath,
