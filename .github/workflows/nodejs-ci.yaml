@@ -47,6 +47,7 @@ jobs:
 
     - name: deploy sites
       # if: github.event_name == 'release'
+      if: ${{ matrix.node-version == '10.x' }}
       run: git config --global user.email "hylbegoat@gmail.com" && git config --global user.name "William Huang" && yarn run deploy:ci
       env:
         GITHUB_PAT: ${{ secrets.GitHub_PAT }}
