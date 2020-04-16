@@ -39,6 +39,8 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
         return accu;
       }, prevFileList);
     });
+
+    Alert.info('file register Acc');
   }, [uploadController]);
 
   useEffect(() => {

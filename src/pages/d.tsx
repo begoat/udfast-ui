@@ -40,18 +40,24 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
 
   const getFileList = useCallback((dController: DController) => {
     if (peerId) {
+      Alert.info('requesting file list');
       dController.getFileList(peerId)
         .then(file => {
+          Alert.success('file list resp received acc');
           setFileList(file.map(f => ({
             fileId: f.fileId,
             name: f.fileName,
             size: f.fileSize,
           })));
+        })
+        .catch(() => {
+          Alert.error('get file list failed');
         });
     }
   }, [peerId]);
 
   const registerAcc = useCallback((downloadId: string, fileId: string) => {
+    Alert.success('download file Acc');
     setLogs(prevLogs => ({
       ...prevLogs,
       [downloadId]: (prevLogs[downloadId] || []).concat([{ logType: 'acc', timestamp: getCurrTimestamp(), fileId }])
@@ -71,9 +77,11 @@ export default ({ pathContext }: ReplaceComponentRendererArgs) => {
 
   const startDownload = useCallback((fileId: string) => {
     const downloadId = generateDownloadId();
+    Alert.info(`start downloading File ${fileId}`);
     // eslint-disable-next-line no-unused-expressions
     downloadController?.initDownload(downloadId, peerId, fileId)
       .then(() => {
+        Alert.success('download worker ready, let\'s go');
         setFileList(prevList => prevList.map(p => {
           if (p.fileId === fileId) {
             return {
