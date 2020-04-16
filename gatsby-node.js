@@ -43,3 +43,30 @@ exports.onCreatePage = ({ page, actions }) => {
     resolve();
   })
 };
+
+// https://www.gatsbyjs.org/docs/node-apis/#sourceNodes
+exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
+  const { createNode } = actions;
+
+  // Data can come from anywhere, but for now create it manually
+  const customData = {
+    buildTime: new Date().getTime()
+  };
+
+  const nodeContent = JSON.stringify(customData)
+
+  const nodeMeta = {
+    id: 'customData',
+    parent: null,
+    children: [],
+    internal: {
+      type: `customData`,
+      mediaType: `text/html`,
+      content: nodeContent,
+      contentDigest: createContentDigest(customData)
+    }
+  }
+
+  const node = Object.assign({}, customData, nodeMeta);
+  createNode(node);
+}

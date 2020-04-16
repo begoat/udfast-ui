@@ -21,7 +21,7 @@ interface SEOProps {
 }
 
 function SEO({ description = '', lang = 'en', meta = [], titleKey }: SEOProps) {
-  const { site } = useStaticQuery(
+  const { site, customData } = useStaticQuery(
     graphql`
       query {
         site {
@@ -30,6 +30,9 @@ function SEO({ description = '', lang = 'en', meta = [], titleKey }: SEOProps) {
             description
             author
           }
+        }
+        customData {
+          buildTime
         }
       }
     `
@@ -81,6 +84,10 @@ function SEO({ description = '', lang = 'en', meta = [], titleKey }: SEOProps) {
         {
           name: 'viewport',
           content: 'width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'
+        },
+        {
+          name: 'buildTime',
+          content: customData.buildTime
         }
       ].concat(meta)}
     />
